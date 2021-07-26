@@ -96,7 +96,7 @@ export default function App() {
           </a>
           <p className="footer">
             <a
-              href="https://github.com/inesmcferreira/weather-app-sheCodes"
+              href="https://github.com/inesmcferreira/weather-app-1"
               target="_blank"
               className="code"
             >
