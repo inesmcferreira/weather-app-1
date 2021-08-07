@@ -16,7 +16,7 @@ export default function Weather(props){
             description: response.data.weather[0].main,
             feelslike: Math.round(response.data.main.feels_like ),
             humidity: response.data.main.humidity,
-            imgurl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+            imgurl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
 
         }) ;
 
@@ -26,7 +26,7 @@ export default function Weather(props){
 function search(){
  const apiKey = "8b9116272680075e668b32ddcdad757a";
  console.log(props.defaultCity);
-    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 }
 
