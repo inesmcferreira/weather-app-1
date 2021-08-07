@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 
 export default function Weather(){
-    return (
+    const  [ready, setReady] = useState(false);
+    const [temperature, setTemperature] = useState(null);
+    function handleResponse(response){
+    setTemperature(response.data.main.temp);
+    setReady (true);
+}
+
+    if (ready){
+return (
     <div className="wrap">
         <div className="container">
           <form id="formulario">
@@ -86,4 +95,16 @@ export default function Weather(){
         <hr />
         </div>
     );
+    }
+
+    else{
+ const apiKey = "73cf2156fca1d8b078d75a48a4ddf469";
+    let city = "London"
+    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(upiUrl).then(handleResponse);
+
+    return "Loading..."
+}
+   
+    
 }
