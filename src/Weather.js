@@ -60,7 +60,6 @@ return (
               SAT
               <br />
               <FormatedDate date={weatherData.date} /> <br />
-              16:20
             </h2>
           </div>
           <div className="box1">
