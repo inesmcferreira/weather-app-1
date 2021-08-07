@@ -1,15 +1,27 @@
 import React, {useState} from "react";
 import axios from "axios";
 
-export default function Weather(){
-    const  [ready, setReady] = useState(false);
-    const [temperature, setTemperature] = useState(null);
+export default function Weather(props){
+    const [weatherData, setWeatherData] = useState({ready: false});
     function handleResponse(response){
-    setTemperature(response.data.main.temp);
-    setReady (true);
+        console.log(response.data)
+        setWeatherData ({
+            ready: true,
+            temperature:response.data.main.temp,
+            wind: response.data.wind.speed,
+            city: response.data.name,
+            date: "07/08",
+            description: response.data.weather[0].main,
+            feelslike: response.data.main.feels_like,
+            humidity: response.data.main.humidity,
+            imgurl: "http://openweathermap.org/img/wn/02d@2x.png"
+
+        }) ;
+
+    
 }
 
-    if (ready){
+    if (weatherData.ready){
 return (
     <div className="wrap">
         <div className="container">
@@ -34,10 +46,10 @@ return (
             </div>
           </form>
           <div className="box">
-            <h1>Viseu</h1>
+            <h1>{weatherData.city}</h1>
             <div className="clearfix>">
               <div className="float-left">
-                <strong>9</strong>
+                <strong>{Math.round(weatherData.temperature)}</strong>
                 <span>
                   <small>ºC</small>
                 </span>
@@ -46,27 +58,27 @@ return (
             <h2>
               SAT
               <br />
-              13/03 <br />
+              {weatherData.date} <br />
               16:20
             </h2>
           </div>
           <div className="box1">
             <br />
             <img
-              src="http://openweathermap.org/img/wn/02d@2x.png"
+              src={weatherData.imgurl}
               className="fas fa-sun sun-icon"
             ></img>
             <p></p>
-            <strong>Cloudy</strong>
+            <strong>{weatherData.description}</strong>
             <p></p>
             Feels like:
-            <span>7º</span>
+            <span> {weatherData.feelslike}º</span>
             <br />
-            Precipitation:
-            <span>0%</span>
+            Humidity:
+            <span> {weatherData.humidity}%</span>
             <br />
             Wind:
-            <span>9 Km/H</span>
+            <span> {weatherData.wind} Km/H</span>
           </div>
           <div className="weather-forecast"></div>
           <ul className="nav justify-content-center">
@@ -99,9 +111,9 @@ return (
 
     else{
  const apiKey = "73cf2156fca1d8b078d75a48a4ddf469";
-    let city = "London"
-    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(upiUrl).then(handleResponse);
+ console.log(props.defaultCity)
+    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
 
     return "Loading..."
 }

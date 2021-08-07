@@ -4,7 +4,7 @@ import Weather from "./Weather.js";
 export default function App() {
   return (
     <div className="App">
-<Weather />
+<Weather defaultCity= "Viseu" />
   
         <p className="footer">
           <em>This page was built by </em>
