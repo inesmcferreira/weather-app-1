@@ -12,6 +12,7 @@ export default function App() {
             href="https://www.instagram.com/inesferreira/"
             target="_blank"
             className="insta"
+            rel = "noopener noreferrer"
           >
             InêsFerreira
           </a>
@@ -20,6 +21,7 @@ export default function App() {
               href="https://github.com/inesmcferreira/weather-app-1"
               target="_blank"
               className="code"
+              rel = "noopener noreferrer"
             >
               Open-source code
             </a>
