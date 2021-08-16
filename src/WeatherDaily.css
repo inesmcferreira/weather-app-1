@@ -7,3 +7,15 @@
   opacity: 0.6;
   margin-left: 4px;
 }
+
+.day-icon {
+  width: 75%;
+  height: 75%;
+}
+
+.weatherDaily {
+  margin: 20px auto;
+  text-align: center;
+  padding: 40px 30px;
+  border: solid #feca2c;
+}
