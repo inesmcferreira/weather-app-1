@@ -42,6 +42,29 @@ function handleCityChange(event){
 setCity(event.target.value);
 }
 
+
+
+
+
+function current (position){
+  const apiKey = "ff1e427863a732542db269c9f762cfd2"
+let lat =position.coords.latitude;
+let lon =position.coords.longitude;
+console.log(lat);
+console.log(lon);
+let apiCity = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+axios.get(`${apiCity}&appid=${apiKey}`).then(handleResponse);
+console.log(lat)
+}
+
+function showCurrent(){
+  //console.log(navigator.geolocation.getCurrentPosition())
+ navigator.geolocation.getCurrentPosition(current); 
+
+}
+
+
+
     if (weatherData.ready){
 return (
     <div className="wrap">
@@ -60,7 +83,7 @@ return (
                 <button type="submit" className="btn btn-warning">
                   Search
                 </button>
-                <button type="submit" className="btn gps btn-warning">
+                <button type="submit" className="btn gps btn-warning" onClick={showCurrent}>
                   {" "}
                   Current Location
                 </button>
